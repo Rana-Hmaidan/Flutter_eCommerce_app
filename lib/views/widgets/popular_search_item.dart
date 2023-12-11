@@ -36,37 +36,49 @@ class PopularSearchItem extends StatelessWidget {
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
           ),
-          const SizedBox(width: 10,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                searchItem.productItem.name,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontWeight: FontWeight.w600
-                ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    searchItem.productItem.name,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  Text(
+                    '${searchItem.productItem.searchCount}K Search today',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: AppColors.grey
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 10,),
-              Text(
-                '${searchItem.productItem.searchCount}K Search today',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: AppColors.grey
-                ),
-              ),
-            ],
+            ),
           ),
           const Spacer(),
           DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18.0),
-              color: Color(searchItem.descriptionColor).withOpacity(0.3),
+              color: searchItem.description == Description.Hot? const Color(0xffFF0000).withOpacity(0.3) : 
+                     searchItem.description == Description.New? const Color(0xffFFA500).withOpacity(0.3):
+                     searchItem.description == Description.Popular? const Color(0xff008000).withOpacity(0.3):
+                     Theme.of(context).colorScheme.primary.withOpacity(0.3),
+              //color: Color(searchItem.descriptionColor).withOpacity(0.3),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0 ,vertical: 8.0),
               child: Text(
-                searchItem.description,
+                searchItem.description!.name,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Color(searchItem.descriptionColor),
+                    color: searchItem.description == Description.Hot? const Color(0xffFF0000).withOpacity(0.3) : 
+                     searchItem.description == Description.New? const Color(0xffFFA500).withOpacity(0.3):
+                     searchItem.description == Description.Popular? const Color(0xff008000).withOpacity(0.3):
+                     Theme.of(context).colorScheme.primary.withOpacity(0.3),
                     fontWeight: FontWeight.w600,
                   ),
               ),

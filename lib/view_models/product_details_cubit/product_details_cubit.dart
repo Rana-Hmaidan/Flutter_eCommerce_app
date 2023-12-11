@@ -7,13 +7,55 @@ part 'product_details_state.dart';
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   ProductDetailsCubit() : super(ProductDetailsInitial());
 
-  void getProductDetailsItemData(ProductItemModel productItem, List<String> sizes){
+  void getProductDetailsItemData(ProductItemModel productItem){
     emit(ProductDetailsLoading());
-    Future.delayed(const Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 1),(){
       emit(
         ProductDetailsLoaded(
           productItem: productItem ,
-          sizes: dummySizes
+        ));
+    });
+  }
+
+  void addToFavorites(String productId){
+    emit(ProductDetailsLoading());
+    final index = dummyProducts.indexWhere((item) => item.id == productId);
+    dummyProducts[index] = dummyProducts[index].copyWith(isFavorite: !dummyProducts[index].isFavorite);
+
+    emit(ProductDetailsLoading());
+
+    Future.delayed(const Duration(seconds: 1),(){
+      emit(
+        ProductDetailsLoaded(
+          productItem: dummyProducts[index],
+        ));
+    });
+  }
+
+  void increment(String productId){
+      emit(ProductDetailsLoading());
+      final index = dummyProducts.indexWhere((item) => item.id == productId);
+      dummyProducts[index] = dummyProducts[index].copyWith(quantity: dummyProducts[index].quantity + 1);
+      emit(QuantityCounterLoaded(value: dummyProducts[index].quantity, productId: productId));
+      Future.delayed(const Duration(seconds: 1),(){
+      emit(
+        ProductDetailsLoaded(
+          productItem: dummyProducts[index],
+        ));
+    });
+  }
+  
+  void decrement(String productId){
+
+    emit(ProductDetailsLoading());
+     final index = dummyProducts.indexWhere((item) => item.id == productId);
+      dummyProducts[index] = dummyProducts[index].copyWith(quantity: dummyProducts[index].quantity - 1);
+      emit(QuantityCounterLoaded(value: dummyProducts[index].quantity, productId: productId));
+
+      Future.delayed(const Duration(seconds: 1),(){
+      emit(
+        ProductDetailsLoaded(
+          productItem: dummyProducts[index],
         ));
     });
   }

@@ -9,7 +9,7 @@ class SearchCubit extends Cubit<SearchState>{
 
   void getSearchData(){
     emit(SearchLoading());
-    Future.delayed(const Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 1),(){
       emit(
         SearchLoaded(
           lastSerchItems: dummylastSearches,

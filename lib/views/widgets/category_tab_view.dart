@@ -22,9 +22,9 @@ class CategoryTabView extends StatelessWidget {
           );
         }else if(state is CategoryLoaded){
           return ListView.separated(
-              padding: const EdgeInsets.all(8),
               itemCount: dummyCategories.length,
-              separatorBuilder: (_, index) => const SizedBox(height: 10),
+              padding: const EdgeInsets.all(16.0),
+              separatorBuilder: (_, index) => const SizedBox(height: 12),
               itemBuilder: (context, index) => CategoryItem(categoryItem: dummyCategories[index]),
           );
         }else{

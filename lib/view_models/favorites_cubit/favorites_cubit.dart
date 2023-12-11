@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/models/home_carousel_model.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 
-part 'home_state.dart';
+part 'favorites_state.dart';
 
-class HomeCubit extends Cubit<HomeState>{
-  HomeCubit() : super(HomeInitial());
+class FavoritesCubit extends Cubit<FavoritesState>{
+  FavoritesCubit() : super(FavoritesInitial());
 
-  void getHomeData(){
-    emit(HomeLoading());
+    void getFavoritesItems(){
+    emit(FavoritesLoading());
     Future.delayed(const Duration(seconds: 1),(){
       emit(
-        HomeLoaded(
-          products: dummyProducts, 
-          carouselItems: dummyCarouselItems
-        ));
+        FavoritesLoaded(
+          favoritesItems: dummyProducts.where((item) => item.isFavorite == true).toList(),
+      ));
     });
   }
 
   void addToFavorites(String productId){
-    emit(HomeLoading());
+    emit(FavoritesLoading());
     final index = dummyProducts.indexWhere((item) => item.id == productId);
     dummyProducts[index] = dummyProducts[index].copyWith(isFavorite: !dummyProducts[index].isFavorite);
-    emit(HomeLoading());
+    emit(FavoritesLoading());
+
     Future.delayed(const Duration(seconds: 1),(){
       emit(
-        HomeLoaded(
-         products: dummyProducts,
-         carouselItems: dummyCarouselItems
+        FavoritesLoaded(
+         favoritesItems: dummyProducts.where((item) => item.isFavorite == true).toList(),
         ));
     });
   }
+
 }

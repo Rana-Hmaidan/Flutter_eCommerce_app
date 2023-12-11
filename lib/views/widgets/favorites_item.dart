@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
-import 'package:flutter_ecommerce_app/view_models/home_cubit/home_cubit.dart';
+import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
 
-class ProductItem extends StatelessWidget {
-  final ProductItemModel productItem;
+class FavoritesItem extends StatelessWidget {
 
-  const ProductItem({super.key, required this.productItem});
+  final ProductItemModel favoriteItem;
 
+  const FavoritesItem({super.key, required this.favoriteItem});
 
   @override
   Widget build(BuildContext context) {
-    final homeCubit = BlocProvider.of<HomeCubit>(context);
+
+    final favoriteCubit = BlocProvider.of<FavoritesCubit>(context);
 
     return Column(
       children: [
@@ -24,12 +25,12 @@ class ProductItem extends StatelessWidget {
               width: 220,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
-                color: Colors.grey.shade200,
+                color: const Color.fromARGB(255, 165, 130, 130),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: CachedNetworkImage(
-                  imageUrl: productItem.imgUrl,
+                  imageUrl: favoriteItem.imgUrl,
                   fit: BoxFit.contain,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator.adaptive(),
@@ -47,8 +48,8 @@ class ProductItem extends StatelessWidget {
                   color: Colors.white60,
                 ),
                 child: IconButton(
-                  onPressed: () => homeCubit.addToFavorites(productItem.id),
-                  icon: Icon(productItem.isFavorite == false? Icons.favorite_border : Icons.favorite),
+                  onPressed: () => favoriteCubit.addToFavorites(favoriteItem.id),
+                  icon: Icon(favoriteItem.isFavorite == false? Icons.favorite_border : Icons.favorite),
                   color: AppColors.red,
                 ),
               ),
@@ -57,19 +58,19 @@ class ProductItem extends StatelessWidget {
         ),
         const SizedBox(height: 8.0,),
         Text(
-          productItem.name,
+          favoriteItem.name,
           style: Theme.of(context).textTheme.labelLarge!.copyWith(
             fontWeight: FontWeight.w600,
           ),
         ),
         Text(
-          productItem.category,
+          favoriteItem.category,
           style: Theme.of(context).textTheme.labelSmall!.copyWith(
            color: Colors.grey,
           ),
         ),
         Text(
-          '\$${productItem.price}',
+          '\$${favoriteItem.price}',
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
            fontWeight: FontWeight.w600,
           ),

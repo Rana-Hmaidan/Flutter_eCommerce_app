@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/models/search_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
 import 'package:flutter_ecommerce_app/view_models/search_cubit/search_cubit.dart';
 import 'package:flutter_ecommerce_app/views/widgets/last_search_item.dart';
@@ -98,22 +97,28 @@ class _SearchPageState extends State<SearchPage> {
                       ],
                     ),
                     const SizedBox(height: 10,),
-                    GridView.builder(
-                            itemCount: state.lastSerchItems.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: MediaQuery.of(context).size.width /(MediaQuery.of(context).size.height/6),
-                              crossAxisSpacing: 15,
-                              mainAxisSpacing: 15,
+                    SizedBox(
+                      child: Wrap(
+                        direction: Axis.horizontal,
+                        children: state.lastSerchItems.map((item) {
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                            Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Expanded(
+                              child: LastSearchItem(
+                                      value: item, 
+                                      onPressed: () {  }, 
+                                      onPresseedIcon: () {  },
+                                    ),
+                              ),
                             ),
-                            itemBuilder: (context, index) => LastSearchItem(
-                              onPressed: () {},
-                              value: state.lastSerchItems[index],
-                              onPresseedIcon: (){},
-                            ),
+                            ],
+                          );
+                        }).toList(),
                       ),
+                    ),
                       const SizedBox(height: 24,),
                       Text(
                           'Popular Search',
@@ -122,13 +127,16 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                       ),
                       const SizedBox(height: 10,),
-                      ListView.separated(
-                        itemCount: state.popularsearchItems.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (_, index) => const SizedBox(height: 10.0),
-                        itemBuilder: (context, index) => PopularSearchItem(
-                          searchItem: state.popularsearchItems[index],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.separated(
+                          itemCount: state.popularsearchItems.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (_, index) => const SizedBox(height: 10.0),
+                          itemBuilder: (context, index) => PopularSearchItem(
+                            searchItem: state.popularsearchItems[index],
+                          ),
                         ),
                       ),
                   ]

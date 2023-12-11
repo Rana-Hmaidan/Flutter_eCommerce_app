@@ -12,13 +12,32 @@ final class ProductDetailsLoading extends ProductDetailsState{}
 final class ProductDetailsLoaded extends ProductDetailsState{
   
   final ProductItemModel productItem;
-  final List<String> sizes;
 
   const ProductDetailsLoaded({
     required this.productItem,
-    required this.sizes,
   });
 }
+
+class QuantityCounterLoaded extends ProductDetailsState{
+  final int value;
+  final String productId;
+  
+  const QuantityCounterLoaded({
+    required this.value,
+    required this.productId,
+  });
+}
+
+// class FavoriteLoaded extends ProductDetailsState{
+
+//   final String productId;
+//   final bool isFavorite;
+  
+//   const FavoriteLoaded({
+//     required this.isFavorite,
+//     required this.productId,
+//   });
+// }
 
 final class ProductDetailsError extends ProductDetailsState{
   final String message;
