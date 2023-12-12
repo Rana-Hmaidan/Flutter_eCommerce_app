@@ -59,5 +59,22 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         ));
     });
   }
+  void addToCart(String productId){
+    emit(ProductDetailsLoading());
+    final index = dummyProducts.indexWhere((item) => item.id == productId);
+    dummyProducts[index] = dummyProducts[index].copyWith(
+      isAddedToCart: true, 
+      quantity: dummyProducts[index].quantity, 
+      size: dummyProducts[index].size,
+      price: dummyProducts[index].price,
+    );
+     emit(ProductDetailsLoading());
+    Future.delayed(const Duration(seconds: 1),(){
+      emit(
+        ProductDetailsLoaded(
+         productItem: dummyProducts[index],
+        ));
+    });
+  }
 
 }

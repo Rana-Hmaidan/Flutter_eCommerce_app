@@ -16,7 +16,7 @@ List<CategoryItemModel> dummyCategories =[
   CategoryItemModel(
     id: 1, 
     name: 'New Arrivals', 
-    imgUrl: 'https://www.frankyfashion.com/cdn/shop/files/Home_Page-1600X600-Blazer_01-Darker_1200x.jpg?v=1650564400',
+    imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzvqy4roLm4pxSDTG8pyHZUqmMfo0EBokXA&usqp=CAU',
     productsCount: 208
   ),
    CategoryItemModel(
@@ -28,7 +28,7 @@ List<CategoryItemModel> dummyCategories =[
    CategoryItemModel(
     id: 3, 
     name: 'Bags', 
-    imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGcJ8JtZpe39rwntIitcPhO1w2jjzB_736O8cCpB_PauGv0HrVlkX-s7MBkfmbVNduPBU&usqp=CAU',
+    imgUrl: 'https://t3.ftcdn.net/jpg/02/48/72/46/360_F_248724638_CmVOwxQz3VBwlp24cgYEIcLuD4CVZ9tb.jpg',
     productsCount: 160
   ),
    CategoryItemModel(
@@ -39,8 +39,8 @@ List<CategoryItemModel> dummyCategories =[
   ),
   CategoryItemModel(
     id: 5, 
-    name: 'Electronics', 
-    imgUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZQxMo-NM4pBIwq8kEeSKM9z-b9Mxt8yAIf-flAYx_1NcJRa-s0-WleZOxsgYuRnwaUk&usqp=CAU',
+    name: 'Electronics',
+    imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Mz9GR52aOkxbJE4ZMiENzTFuVz59XEZ8McMYAMHXfQZtGyZQBUzf7nIStr2qS5ifOw&usqp=CAU', 
     productsCount: 170
   ),
 ];

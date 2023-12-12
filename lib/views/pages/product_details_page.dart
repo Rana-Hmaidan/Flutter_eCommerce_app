@@ -255,9 +255,7 @@ class ProductDetailsPage extends StatelessWidget {
                               SizedBox(
                                 height: 50,
                                 child: ElevatedButton.icon(
-                                onPressed: (){
-                                  
-                                },
+                                onPressed: () => productDetailsCubit.addToCart(productItem.id),
                                   icon: const Icon(
                                   Icons.shopping_cart,
                                     color: AppColors.white,

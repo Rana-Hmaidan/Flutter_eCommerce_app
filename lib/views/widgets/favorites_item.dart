@@ -25,7 +25,7 @@ class FavoritesItem extends StatelessWidget {
               width: 220,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
-                color: const Color.fromARGB(255, 165, 130, 130),
+                color: Colors.grey.shade200,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
