@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/category_item_model.dart';
-import 'package:flutter_ecommerce_app/models/search_item_model.dart';
 import 'package:flutter_ecommerce_app/shared/widget_extension.dart';
-import 'package:flutter_ecommerce_app/utils/app_colors.dart';
 import 'package:flutter_ecommerce_app/utils/app_routes.dart';
 import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
 import 'package:flutter_ecommerce_app/views/widgets/category_chip_widget.dart';
-import 'package:flutter_ecommerce_app/views/widgets/favorites_item.dart';
 import 'package:flutter_ecommerce_app/views/widgets/product_item.dart';
 import 'package:flutter_ecommerce_app/views/widgets/search_bar_widget.dart';
 
@@ -49,19 +46,21 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       label: item.name, 
                       isSelected: false),
                     ),
-                  ].addSeparator(const SizedBox(width: 16.0)),
+                  ].addSeparator(const SizedBox(width: 12.0)),
                 ),
               ),
+              const SizedBox(height: 16.0),
               Expanded(
                 child: BlocBuilder<FavoritesCubit, FavoritesState>(
+                  bloc: BlocProvider.of<FavoritesCubit>(context),
                   builder: (context, state) {
                     if(state is FavoriteLoadingState){
                       return const CircularProgressIndicator.adaptive();
                     }else if(state is FavoriteLoadedState){
                       return GridView.builder(
                         itemCount: state.products.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
+                        //shrinkWrap: true,
+                        //physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 25,

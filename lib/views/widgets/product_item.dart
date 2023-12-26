@@ -14,7 +14,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeCubit = BlocProvider.of<HomeCubit>(context);
+   // final homeCubit = BlocProvider.of<HomeCubit>(context);
 
     return Column(
       children: [

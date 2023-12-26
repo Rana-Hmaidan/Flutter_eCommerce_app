@@ -19,9 +19,10 @@ class CategoryChipWidget extends StatelessWidget {
       ),
       selected: isSelected,
       showCheckmark: false,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide(color: AppColors.grey.shade400),
+        side:  BorderSide(color: AppColors.grey.shade400),
       ),
     );
   }

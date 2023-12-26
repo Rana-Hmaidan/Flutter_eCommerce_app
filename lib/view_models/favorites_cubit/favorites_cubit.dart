@@ -36,7 +36,7 @@ class FavoritesCubit extends Cubit<FavoritesState>{
   Future<void> loadFavoriteProducts() async{
     emit(FavoriteLoadingState());
     await Future.delayed(const Duration(seconds: 2));
-    final favoriteList = dummyProducts.where((item) => favoriteProducts[item.id] ?? false).toList();
+    final favoriteList = dummyProducts.where((item) => (favoriteProducts[item.id] ?? false)).toList();
     emit(FavoriteLoadedState(favoriteList));
   } 
 }
