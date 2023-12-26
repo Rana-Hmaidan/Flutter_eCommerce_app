@@ -48,7 +48,7 @@ class FavoritesItem extends StatelessWidget {
                   color: Colors.white60,
                 ),
                 child: IconButton(
-                  onPressed: () => favoriteCubit.addToFavorites(favoriteItem.id),
+                  onPressed: () => {} , //favoriteCubit.addToFavorites(favoriteItem.id),
                   icon: Icon(favoriteItem.isFavorite == false? Icons.favorite_border : Icons.favorite),
                   color: AppColors.red,
                 ),

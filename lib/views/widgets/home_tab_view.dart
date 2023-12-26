@@ -73,8 +73,9 @@ class HomeTabView extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 18,
-                          mainAxisSpacing: 18,
+                          crossAxisSpacing: 25,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 1.5 /2,
                         ),
                         itemBuilder: (context, index) => InkWell(
                           onTap: (){

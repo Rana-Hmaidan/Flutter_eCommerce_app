@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 enum Size {S, M, L, XL}
 
-class ProductItemModel{
+class ProductItemModel extends Equatable{
   final String id;
   final String name;
   final String imgUrl;
@@ -62,6 +64,9 @@ class ProductItemModel{
       isAddedToCart: isAddedToCart ?? this.isAddedToCart,
     );
   }
+  
+  @override
+  List<Object?> get props => [id, name, imgUrl, description, price, isFavorite, category ];
 }
 
 //List<String> dummySizes = ['S','M','L','XL'];

@@ -11,8 +11,11 @@ final class CartLoading extends CartState{}
 
 final class CartLoaded extends CartState{
   final List<ProductItemModel> cartItems;
+  final double subtotal;
+
   const CartLoaded({
     required this.cartItems,
+    required this.subtotal,
   });
 }
 

@@ -1,11 +1,19 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/models/address_item_model.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_routes.dart';
+import 'package:flutter_ecommerce_app/view_models/address_cubit/address_cubit.dart';
+import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
+import 'package:flutter_ecommerce_app/view_models/payment_cubit/payment_cubit.dart';
 import 'package:flutter_ecommerce_app/view_models/product_details_cubit/product_details_cubit.dart';
 import 'package:flutter_ecommerce_app/view_models/search_cubit/search_cubit.dart';
+import 'package:flutter_ecommerce_app/views/pages/address_page.dart';
 import 'package:flutter_ecommerce_app/views/pages/custom_bottom_navbar.dart';
 import 'package:flutter_ecommerce_app/views/pages/my_orders_page.dart';
+import 'package:flutter_ecommerce_app/views/pages/payment_page.dart';
 import 'package:flutter_ecommerce_app/views/pages/product_details_page.dart';
 import 'package:flutter_ecommerce_app/views/pages/search_page.dart';
 
@@ -36,14 +44,42 @@ class AppRouter {
           ),
           settings: settings,
         );
-       case AppRoutes.myOrders: 
+      case AppRoutes.myOrders: 
         return MaterialPageRoute(
           builder: (_) => const MyOrdersPage(),
           settings: settings,
-        );
+      );
+      case AppRoutes.payment: 
+      //final AddressItemModel selectedAddressItemArguments = settings.arguments as AddressItemModel;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context){
+              final paymentCubit = PaymentCubit();
+              paymentCubit.getPaymentViewData();
+              return paymentCubit;
+            },
+            child: const PaymentPage()
+          ),
+          settings: settings,
+      );
+      case AppRoutes.address: 
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context){
+              final addressCubit = AddressCubit();
+              addressCubit.getAddressViewData();
+              return addressCubit;
+            },
+            child: const AddressPage()
+          ),
+          settings: settings,
+      );
       case AppRoutes.home:
         return MaterialPageRoute(
-          builder: (_) => const CustomBottomNavbar(),
+          builder: (_) => BlocProvider(
+            create: (context) => FavoritesCubit(),
+            child: const CustomBottomNavbar()
+          ),
           settings: settings,
         );
       default:

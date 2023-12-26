@@ -49,14 +49,7 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
         },
         child: const CartPage(),
         ),
-        BlocProvider(
-        create: (context){
-          final cubit = FavoritesCubit();
-          cubit.getFavoritesItems();
-          return cubit;
-        },
-        child: const FavoritesPage(),
-        ),
+      const FavoritesPage(),
       const ProfilePage(),
     ];
   }

@@ -1,28 +1,67 @@
 part of 'favorites_cubit.dart';
 
-@immutable
-sealed class FavoritesState {
-  const FavoritesState();
+class FavoritesState {}
+
+class FavoriteLoadingState extends FavoritesState{}
+
+class FavoriteLoadedState extends FavoritesState{
+  final List<ProductItemModel> products;
+
+  FavoriteLoadedState(this.products);
 }
 
-final class FavoritesInitial extends FavoritesState{}
+// class FavoritesState extends Equatable{
 
-final class FavoritesLoading extends FavoritesState{}
+//   Map<String , bool> favoriteProducts;
+//   Map<String , bool> loadingProducts;
 
-final class FavoritesLoaded extends FavoritesState{
+//   factory FavoritesState.initial() => FavoritesState(
+//     favoriteProducts: {}, 
+//     loadingProducts: {},
+//   );
 
-  final List<ProductItemModel> favoritesItems;
+//   FavoritesState({
+//     required this.favoriteProducts,
+//     required this.loadingProducts,
+//   });
 
-  const FavoritesLoaded({
-    required this.favoritesItems,
-  });
+
+//   FavoritesState copyWith({
+//     Map<String , bool>? products,
+//     Map<String , bool>? isLoading,
+//     }) => FavoritesState(
+//         favoriteProducts: products ?? favoriteProducts,
+//         loadingProducts: isLoading ?? loadingProducts,
+//     );
+
+//   @override
+//   List<Object?> get props => [favoriteProducts, loadingProducts];
+
+// }
+
+// @immutable
+// sealed class FavoritesState {
+//   const FavoritesState();
+// }
+
+// final class FavoritesInitial extends FavoritesState{}
+
+// final class FavoritesLoading extends FavoritesState{}
+
+// final class FavoritesLoaded extends FavoritesState{
+
+//   final List<ProductItemModel> favoritesItems;
+
+//   const FavoritesLoaded({
+//     required this.favoritesItems,
+//   });
   
-}
+// }
 
-final class FavoritesError extends FavoritesState{
-  final String message;
+// final class FavoritesError extends FavoritesState{
+//   final String message;
 
-  const FavoritesError({
-    required this.message
-  });
-}
+//   const FavoritesError({
+//     required this.message
+//   });
+// }

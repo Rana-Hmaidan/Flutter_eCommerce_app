@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
+import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
 import 'package:flutter_ecommerce_app/view_models/home_cubit/home_cubit.dart';
 
 class ProductItem extends StatelessWidget {
@@ -20,8 +21,8 @@ class ProductItem extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: 160,
-              width: 220,
+              height: 190,
+              width: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 color: Colors.grey.shade200,
@@ -46,10 +47,25 @@ class ProductItem extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Colors.white60,
                 ),
-                child: IconButton(
-                  onPressed: () => homeCubit.addToFavorites(productItem.id),
-                  icon: Icon(productItem.isFavorite == false? Icons.favorite_border : Icons.favorite),
-                  color: AppColors.red,
+                child: BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    final isFavorite = BlocProvider.of<FavoritesCubit>(context).favoriteProducts[productItem.id] ?? false;
+                    final isLoading = BlocProvider.of<FavoritesCubit>(context).loadingProducts[productItem.id] ?? false;
+
+                    return IconButton(
+                      onPressed: (){
+                        if(isFavorite){
+                           BlocProvider.of<FavoritesCubit>(context).deleteFavorite(productItem.id);
+                        }else{
+                          BlocProvider.of<FavoritesCubit>(context).addFavorite(productItem.id);
+                        }
+                      },
+                      icon: isLoading? const CircularProgressIndicator.adaptive() : Icon(
+                        isFavorite? Icons.favorite : Icons.favorite_border,
+                        color: isFavorite? AppColors.red : null,
+                      ),
+                    );
+                  }
                 ),
               ),
             ),

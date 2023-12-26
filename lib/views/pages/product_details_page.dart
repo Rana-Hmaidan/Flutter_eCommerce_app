@@ -76,7 +76,8 @@ class ProductDetailsPage extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      onPressed: () => productDetailsCubit.addToFavorites(state.productItem.id),
+                      //onPressed: () => productDetailsCubit.addToFavorites(state.productItem.id),
+                       onPressed:(){},
                       icon: Icon(state.productItem.isFavorite == false? Icons.favorite_border : Icons.favorite),
                       color: AppColors.red,
                       ),

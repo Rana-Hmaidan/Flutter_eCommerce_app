@@ -46,7 +46,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   }
   
   void decrement(String productId){
-
     emit(ProductDetailsLoading());
      final index = dummyProducts.indexWhere((item) => item.id == productId);
       dummyProducts[index] = dummyProducts[index].copyWith(quantity: dummyProducts[index].quantity - 1);
@@ -59,6 +58,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         ));
     });
   }
+  
   void addToCart(String productId){
     emit(ProductDetailsLoading());
     final index = dummyProducts.indexWhere((item) => item.id == productId);
@@ -68,13 +68,14 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       size: dummyProducts[index].size,
       price: dummyProducts[index].price,
     );
-     emit(ProductDetailsLoading());
+    emit(ProductDetailsLoading());
     Future.delayed(const Duration(seconds: 1),(){
       emit(
         ProductDetailsLoaded(
-         productItem: dummyProducts[index],
+          productItem: dummyProducts[index],
         ));
     });
+    
   }
 
 }

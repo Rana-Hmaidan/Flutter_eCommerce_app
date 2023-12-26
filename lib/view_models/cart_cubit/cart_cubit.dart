@@ -9,11 +9,15 @@ class CartCubit extends Cubit<CartState>{
 
   void getCartItems(){
     emit(CartLoading());
+    final cartItems = dummyProducts.where((item) => item.isAddedToCart == true).toList();
+    final subTotal = cartItems.fold<double>(0, (sum, item) => sum + item.price);
     Future.delayed(const Duration(seconds: 1),(){
       emit(
         CartLoaded(
-          cartItems: dummyProducts.where((item) => item.isAddedToCart == true).toList(),
-        ));
+          cartItems: cartItems,
+          subtotal: subTotal,
+        ),
+      );
     });
   }
 
@@ -33,10 +37,13 @@ class CartCubit extends Cubit<CartState>{
     emit(CartLoading());
     final index = dummyProducts.indexWhere((item) => item.id == productId);
     dummyProducts[index] = dummyProducts[index].copyWith(isAddedToCart: false, quantity: 0, size: null);
+    final cartItems = dummyProducts.where((item) => item.isAddedToCart == true).toList();
+    final subTotal = cartItems.fold<double>(0, (sum, item) => sum + item.price);
     Future.delayed(const Duration(seconds: 1),(){
       emit(
         CartLoaded(
-         cartItems: dummyProducts.where((item) => item.isAddedToCart == true).toList(),
+         cartItems: cartItems,
+         subtotal: subTotal,
         ));
     });
   }
