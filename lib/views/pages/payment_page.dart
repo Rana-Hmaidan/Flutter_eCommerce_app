@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
 import 'package:flutter_ecommerce_app/utils/app_routes.dart';
 import 'package:flutter_ecommerce_app/view_models/payment_cubit/payment_cubit.dart';
+import 'package:flutter_ecommerce_app/views/widgets/payment_modal_bottom_sheet.dart';
 import 'package:flutter_ecommerce_app/views/widgets/product_item_payment_widget.dart';
 import 'package:flutter_ecommerce_app/views/widgets/selected_address_item_widget.dart';
 
@@ -18,6 +19,7 @@ class PaymentPage extends StatelessWidget {
       ),
       body: BlocBuilder<PaymentCubit, PaymentState>(
         bloc: BlocProvider.of<PaymentCubit>(context),
+        buildWhen: (previous, current) => current is PaymentLoaded || current is PaymentLoading || current is PaymentError,
         builder: (context, state) {
           if(state is PaymentLoading){
             return const Center(
@@ -83,7 +85,15 @@ class PaymentPage extends StatelessWidget {
                     buildInLineHeadLines(context: context, title: 'Payment Method',),
                     const SizedBox(height: 8.0,),
                     InkWell(
-                      onTap: (){},
+                      onTap: () => showModalBottomSheet(
+                        useSafeArea: true,
+                        isScrollControlled: true,
+                        context: context, 
+                        builder: (ctx) => BlocProvider.value(
+                          value: BlocProvider.of<PaymentCubit>(context),
+                          child: const PaymentModalBottomSheet()
+                        ),
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 100,

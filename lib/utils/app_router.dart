@@ -9,6 +9,7 @@ import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubi
 import 'package:flutter_ecommerce_app/view_models/payment_cubit/payment_cubit.dart';
 import 'package:flutter_ecommerce_app/view_models/product_details_cubit/product_details_cubit.dart';
 import 'package:flutter_ecommerce_app/view_models/search_cubit/search_cubit.dart';
+import 'package:flutter_ecommerce_app/views/pages/add_payment_card.dart';
 import 'package:flutter_ecommerce_app/views/pages/address_page.dart';
 import 'package:flutter_ecommerce_app/views/pages/custom_bottom_navbar.dart';
 import 'package:flutter_ecommerce_app/views/pages/my_orders_page.dart';
@@ -46,6 +47,11 @@ class AppRouter {
       case AppRoutes.myOrders: 
         return MaterialPageRoute(
           builder: (_) => const MyOrdersPage(),
+          settings: settings,
+      );
+      case AppRoutes.addPaymentCard: 
+        return MaterialPageRoute(
+          builder: (_) => const AddPaymentCard(),
           settings: settings,
       );
       case AppRoutes.payment: 

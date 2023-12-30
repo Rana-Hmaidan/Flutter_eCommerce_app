@@ -22,6 +22,10 @@ class PaymentCubit extends Cubit<PaymentState>{
         ));
     });
   }
+
+  void choosePaymentMethod(String paymentMethodId){
+    emit(PaymentMethodChosen(paymentMethodId: paymentMethodId));
+  }
 }
 
   //   void getSelectedAddressViewData(){

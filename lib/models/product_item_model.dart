@@ -83,7 +83,6 @@ List<ProductItemModel> dummyProducts = [
     isAddedToCart: true,
     quantity: 3,
     size: Size.S,
-    isFavorite: true,
   ),
   const ProductItemModel(
     id: '2', 
@@ -93,7 +92,6 @@ List<ProductItemModel> dummyProducts = [
     category: 'Shoes',
     rate: 5.0,
     reviewCount: 500,
-    isFavorite: true,
   ),
   const ProductItemModel(
     id: '3', 
@@ -113,7 +111,6 @@ List<ProductItemModel> dummyProducts = [
     imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLf-xfKmGdFhA8C6U81-0Ob962vJtk4R6lKw&usqp=CAU', 
     price: 10, 
     category: 'Shoes',
-    isFavorite: true,
   ),
   const ProductItemModel(
     id: '5', 
@@ -147,7 +144,6 @@ List<ProductItemModel> dummyProducts = [
     category: 'Electronics',
     isAddedToCart: true,
     quantity: 1,
-    isFavorite: true,
   ),
   const ProductItemModel(
     id: '9', 
@@ -165,6 +161,5 @@ List<ProductItemModel> dummyProducts = [
     isAddedToCart: true,
     quantity: 1,
     size: Size.M,
-    isFavorite: true,
   ),
 ];
