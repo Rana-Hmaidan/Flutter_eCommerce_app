@@ -92,7 +92,12 @@ class _AddressPageState extends State<AddressPage> {
                     itemBuilder: (context, index) {
                       final item = state.addressItems[index];
                       return InkWell(
-                        onTap: () => addressCubit.selectAddress(item.id),
+                        onTap: () {
+                          addressCubit.selectAddress(item.id);
+                          // Navigator.of(context, rootNavigator: true).popAndPushNamed(
+                          //     AppRoutes.payment ,
+                          //   );
+                          },
                         child: AddressItemWidget(item: item,),
                       );
                     },

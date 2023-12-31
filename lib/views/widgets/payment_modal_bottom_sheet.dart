@@ -10,7 +10,7 @@ class PaymentModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 700,
+      height: 550,
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -43,12 +43,14 @@ class PaymentModalBottomSheet extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: AppColors.white,
                 ), 
-                child: const Text('Confirm Payment'),
+                child: const Text('Confirm Payment',),
                 ),
               ),
             ),
