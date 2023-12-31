@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
-import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
 
 class FavoritesItem extends StatelessWidget {
 
@@ -13,8 +11,6 @@ class FavoritesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final favoriteCubit = BlocProvider.of<FavoritesCubit>(context);
 
     return Column(
       children: [

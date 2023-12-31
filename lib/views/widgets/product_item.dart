@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
 import 'package:flutter_ecommerce_app/view_models/favorites_cubit/favorites_cubit.dart';
-import 'package:flutter_ecommerce_app/view_models/home_cubit/home_cubit.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductItemModel productItem;

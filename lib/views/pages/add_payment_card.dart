@@ -16,6 +16,7 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
   late final TextEditingController _cardNumberController, _cardHolderNameController, _expiredController, _cvvCodeController;
   late FocusNode _cardNumberFocusNode, _cardHolderNameFocusNode, _expiredFocusNode, _cvvCodeFocusNode;
   bool visibility = false;
+  // ignore: unused_field
   String? _cardNumber, _cardHolderName, _expired, _cvvCode ;
 
   @override

@@ -15,6 +15,8 @@ class _ForgotPasswordModalBottomsheetState extends State<ForgotPasswordModalBott
   late final GlobalKey<FormState> _formKey;
   late final TextEditingController _emailController;
   late FocusNode _emailFocusNode;
+
+  // ignore: unused_field
   String? _email;
 
   @override
