@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/models/payment_method_model.dart';
 import 'package:flutter_ecommerce_app/utils/app_colors.dart';
 import 'package:flutter_ecommerce_app/utils/app_routes.dart';
+import 'package:flutter_ecommerce_app/view_models/payment_cubit/payment_cubit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AddPaymentCard extends StatefulWidget {
@@ -16,7 +19,7 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
   late final TextEditingController _cardNumberController, _cardHolderNameController, _expiredController, _cvvCodeController;
   late FocusNode _cardNumberFocusNode, _cardHolderNameFocusNode, _expiredFocusNode, _cvvCodeFocusNode;
   bool visibility = false;
-  // ignore: unused_field
+
   String? _cardNumber, _cardHolderName, _expired, _cvvCode ;
 
   @override
@@ -38,27 +41,19 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
 
   @override
   void dispose(){
+    _cardNumberController.dispose();
+    _cardHolderNameController.dispose(); 
+    _expiredController.dispose(); 
+    _cvvCodeController.dispose();
     super.dispose();
-  }
-
-  void addCard(){
-    debugPrint('');
-    if(_formKey.currentState!.validate()){
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Added new card Success!'),
-        ),
-      );
-
-      Navigator.of(context, rootNavigator: true).popAndPushNamed(
-        AppRoutes.payment ,
-      );
-
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+
+    PaymentMethodModel newPaymentCard ;
+    final paymentCubit = BlocProvider.of<PaymentCubit>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -191,8 +186,28 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
                     onChanged: (value) => _cvvCode = value,
                     focusNode: _cvvCodeFocusNode,
                     onEditingComplete: () {
-                      _cvvCodeFocusNode.unfocus();
-                      addCard();
+                          _cvvCodeFocusNode.unfocus();
+                          if(_formKey.currentState!.validate()){
+
+                            newPaymentCard = PaymentMethodModel(
+                                cardNumber: _cardNumberController.text, 
+                                cardHolderName: _cardHolderNameController.text, 
+                                expiryDate: _expiredController.text, 
+                                ccvCard: _cvvCodeController.text
+                            );
+
+                            paymentCubit.addNewPaymentMethod(newPaymentCard);
+      
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                              content: Text('Added new card Success!'),
+                              ),
+                            );
+
+                            Navigator.of(context, rootNavigator: true).popAndPushNamed(
+                              AppRoutes.payment ,
+                            );
+                          }
                     },
                     decoration: InputDecoration(
                       hintText: 'CVV',
@@ -219,7 +234,29 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () => addCard(),
+                          onPressed: (){
+                          if(_formKey.currentState!.validate()){
+
+                            newPaymentCard = PaymentMethodModel(
+                                cardNumber: _cardNumberController.text, 
+                                cardHolderName: _cardHolderNameController.text, 
+                                expiryDate: _expiredController.text, 
+                                ccvCard: _cvvCodeController.text
+                            );
+
+                            paymentCubit.addNewPaymentMethod(newPaymentCard);
+      
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                              content: Text('Added new card Success!'),
+                              ),
+                            );
+
+                            Navigator.of(context, rootNavigator: true).popAndPushNamed(
+                              AppRoutes.payment ,
+                            );
+                          }
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).colorScheme.primary,
                             foregroundColor: AppColors.white,

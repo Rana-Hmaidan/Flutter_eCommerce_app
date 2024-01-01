@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/models/address_item_model.dart';
+import 'package:flutter_ecommerce_app/models/payment_method_model.dart';
 import 'package:flutter_ecommerce_app/models/product_item_model.dart';
 
 part 'payment_state.dart';
@@ -26,6 +27,11 @@ class PaymentCubit extends Cubit<PaymentState>{
   void choosePaymentMethod(String paymentMethodId){
     emit(PaymentMethodChosen(paymentMethodId: paymentMethodId));
   }
+
+  void addNewPaymentMethod(PaymentMethodModel newPaymentMethodItem ){
+    savedCards.add(newPaymentMethodItem);
+  }
+
 }
 
   //   void getSelectedAddressViewData(){

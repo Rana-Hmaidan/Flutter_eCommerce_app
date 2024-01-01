@@ -8,7 +8,7 @@ class PaymentMethodModel{
   final String name;
 
   PaymentMethodModel({
-    required this.id, 
+    this.id = '0', 
     required this.cardNumber, 
     required this.cardHolderName, 
     required this.expiryDate, 

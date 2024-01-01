@@ -21,7 +21,7 @@ class PaymentItemWidget extends StatelessWidget {
     final cubit = BlocProvider.of<PaymentCubit>(context);
 
             return Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
+                padding: const EdgeInsets.only(bottom: 12.0),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: AppColors.white,

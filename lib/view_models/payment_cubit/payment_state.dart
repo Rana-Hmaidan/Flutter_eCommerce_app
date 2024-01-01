@@ -29,6 +29,14 @@ final class PaymentMethodChosen extends PaymentState{
   });
 }
 
+// final class AddNewPaymentMethodState extends PaymentState{
+//   final PaymentMethodModel newPaymentMethod;
+
+//   const AddNewPaymentMethodState({
+//     required this.newPaymentMethod
+//   });
+// }
+
 final class PaymentError extends PaymentState{
   final String message;
 

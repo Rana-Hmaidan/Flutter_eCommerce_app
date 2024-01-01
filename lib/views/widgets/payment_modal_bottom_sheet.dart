@@ -10,19 +10,19 @@ class PaymentModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 550,
+      height: 600,
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 24.0,),
+            const SizedBox(height: 16.0,),
             Text(
               'Payment Method',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(height: 24.0,),
+            const SizedBox(height: 16.0,),
             ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: savedCards.length,
@@ -36,7 +36,7 @@ class PaymentModalBottomSheet extends StatelessWidget {
               Navigator.of(context).pushNamed(AppRoutes.addPaymentCard);
               },
             ),
-            const SizedBox(height: 24.0,),
+            const SizedBox(height: 16.0,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SizedBox(
